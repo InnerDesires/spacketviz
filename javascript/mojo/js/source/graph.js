@@ -3,7 +3,7 @@
 /**
  * Class representing a Graph
  */
-class Graph {
+ module.exports = class Graph {
 
     /** 
      * @typedef Link Object representing a link
@@ -36,7 +36,6 @@ class Graph {
         });
         linksArray.forEach(link => {
             this.nodes[this.dict[link.from]][this.dict[link.to]] = true;
-            this.nodes[this.dict[link.to]][this.dict[link.from]] = true;
         });
     }
 
@@ -73,6 +72,37 @@ class Graph {
         traverse(initialVertexId);
 
         return visited;
+    }
+    isReachableWithoutDirectLinks(initialVertexId, targetVertexId, nodes) {
+        let start = initialVertexId;
+        let visited = {};
+        visited[initialVertexId] = true;
+        let stack = [];
+        stack.push(start);
+        while (stack.length != 0) {
+            start = stack.pop();
+
+            let currentRow = nodes[start]
+            let directLinks = [];
+            for (let i = 0; i < currentRow.length; i++) {
+                if (currentRow[i]) {
+                    directLinks.push(i);
+                }
+            }
+            for (let i = 0; i < directLinks.length; i++) {
+                if (directLinks[i] == targetVertexId) {
+                    if (start === initialVertexId) {
+                        continue;
+                    }
+                    return true;
+                }
+                if (!visited[directLinks[i]]) {
+                    stack.push(directLinks[i])
+                    visited[directLinks[i]] = true;
+                }
+            }
+        }
+        return false;
     }
 
     findAvailableVerticesFromToNew(initialVertexId, endingVertexId, maxPathCount = 5) {
@@ -193,23 +223,34 @@ class Graph {
         });
         return resultIDs;
     }
+
+    transitiveReduction() {
+        let linksToDelete = [];
+        let nodesCopy = clone(this.nodes)
+        for (let i = 0; i < this.uniqueIds.length; i++) {
+            let adjNodes = [];
+            this.nodes[i].forEach((el, index) => {
+                if (el && index !== i) {
+                    adjNodes.push(index);
+                }
+            })
+            adjNodes.forEach(adjNode => {
+                if (this.isReachableWithoutDirectLinks(i, adjNode, nodesCopy)) {
+                    nodesCopy[i][adjNode] = false;
+                    linksToDelete.push({ from: this.uniqueIds[i], to: this.uniqueIds[adjNode] })
+                }
+            })
+        }
+
+        return linksToDelete;
+    }
 }
 
-
-function arr_diff(a1, a2) {
-    var a = [], diff = [];
-    for (let i = 0; i < a1.length; i++) {
-        a[a1[i]] = true;
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
     }
-    for (let i = 0; i < a2.length; i++) {
-        if (a[a2[i]]) {
-            delete a[a2[i]];
-        } else {
-            a[a2[i]] = true;
-        }
-    }
-    for (let k in a) {
-        diff.push(k);
-    }
-    return diff;
+    return copy;
 }

@@ -3,7 +3,7 @@
 /**
  * Class representing a Graph
  */
- module.exports = class Graph {
+class Graph {
 
     /** 
      * @typedef Link Object representing a link

@@ -214,21 +214,6 @@ function nodeImageStringHelper(entityType, color, isForeign = false) {
     return VIS_IMAGES_BASE64[properyName].str;
 }
 
-
-function checkIfInInterval(date, begin, end) {
-
-    if (!begin) {
-        return true;
-    }
-    if (date > begin) {
-        if (!end)
-            return true;
-        if (date < end) {
-            return true;
-        }
-    }
-    return false;
-}
 /**
  * Class responsible for creation, manipulation and appearance of the GoJS visualization
  */
@@ -320,68 +305,47 @@ class Renderer {
 
             function addNode(nodeNumber) {
                 let nodeObject = createNodeObject(obj, nodeNumber);
-                let dateb = nodeObject.begin.split ? nodeObject.begin.split('.') : false;
-                let datee = nodeObject.end.split ? nodeObject.end.split('.') : false;
-                let dateBObj = typeof dateb === 'object' ? {
-                    day: parseInt(dateb[0]),
-                    month: parseInt(dateb[1]) - 1,
-                    year: parseInt(dateb[2])
-                } : false;
-                let dateEObj = typeof datee === 'object' ? {
-                    day: parseInt(datee[0]),
-                    month: parseInt(datee[1]) - 1,
-                    year: parseInt(datee[2])
-                } : false;
-                let dateB = dateb ? new Date(dateBObj.year, dateBObj.month, dateBObj.day) : undefined;
-                let dateE = datee ? new Date(dateEObj.year, dateEObj.month, dateEObj.day) : undefined;
-                let result = nodeObject.begin ? checkIfInInterval(date, dateB, dateE) : true;
-                if (!result && !nodeObject.end) {
-                    if (dateB < date) {
-                        result = true;
-                    }
-                }
-                if (result) {
-                    nodeDataArray.push(nodeObject);
-                    if (options.lookupIds.includes(nodeObject.key)) {
-                        if (!usageHistoryData[nodeObject.key]) {
-                            let displayName = nodeObject.name;
-                            let imageString;
-                            switch (nodeObject.category) {
-                                case NODE_CATEGORIES.BANK:
-                                    imageString = nodeImageStringHelper('bank', nodeObject.color, false);
-                                    break;
-                                case NODE_CATEGORIES.PS:
-                                    imageString = nodeImageStringHelper('human', nodeObject.color, false);
-                                    break;
-                                case NODE_CATEGORIES.BANKF:
-                                    imageString = nodeImageStringHelper('bank', nodeObject.color, true);
-                                    break;
-                                case NODE_CATEGORIES.PSF:
-                                    imageString = nodeImageStringHelper('human', nodeObject.color, true);
-                                    break;
-                                case NODE_CATEGORIES.LS:
-                                    imageString = nodeImageStringHelper('legal', nodeObject.color, false);
-                                    break;
-                                case NODE_CATEGORIES.LSF:
-                                    imageString = nodeImageStringHelper('legal', nodeObject.color, true);
-                                    break;
-                                case NODE_CATEGORIES.GOV:
-                                    imageString = nodeImageStringHelper('gov', nodeObject.color, false);
-                                    break;
-                                case NODE_CATEGORIES.default:
-                                    imageString = nodeImageStringHelper('question', nodeObject.color, false);
-                                    break;
-                                default:
-                                    imageString = nodeImageStringHelper('legal', nodeObject.color, false);
-                                    break;
-                            }
-                            usageHistoryData[nodeObject.key] = {
-                                displayName,
-                                imageString
-                            };
+                nodeDataArray.push(nodeObject);
+                if (options.lookupIds.includes(nodeObject.key)) {
+                    if (!usageHistoryData[nodeObject.key]) {
+                        let displayName = nodeObject.name;
+                        let imageString;
+                        switch (nodeObject.category) {
+                            case NODE_CATEGORIES.BANK:
+                                imageString = nodeImageStringHelper('bank', nodeObject.color, false);
+                                break;
+                            case NODE_CATEGORIES.PS:
+                                imageString = nodeImageStringHelper('human', nodeObject.color, false);
+                                break;
+                            case NODE_CATEGORIES.BANKF:
+                                imageString = nodeImageStringHelper('bank', nodeObject.color, true);
+                                break;
+                            case NODE_CATEGORIES.PSF:
+                                imageString = nodeImageStringHelper('human', nodeObject.color, true);
+                                break;
+                            case NODE_CATEGORIES.LS:
+                                imageString = nodeImageStringHelper('legal', nodeObject.color, false);
+                                break;
+                            case NODE_CATEGORIES.LSF:
+                                imageString = nodeImageStringHelper('legal', nodeObject.color, true);
+                                break;
+                            case NODE_CATEGORIES.GOV:
+                                imageString = nodeImageStringHelper('gov', nodeObject.color, false);
+                                break;
+                            case NODE_CATEGORIES.default:
+                                imageString = nodeImageStringHelper('question', nodeObject.color, false);
+                                break;
+                            default:
+                                imageString = nodeImageStringHelper('legal', nodeObject.color, false);
+                                break;
                         }
+                        usageHistoryData[nodeObject.key] = {
+                            displayName,
+                            imageString
+                        };
                     }
                 }
+
 
             }
 
@@ -399,42 +363,20 @@ class Renderer {
             }
             let linkCat = this.getLinkCategory(obj[DECOMPOSED_ATTRIBUTES.LINK.CATEGORY]);
             let linkToolTip = createLinkTooltipString(obj);
-            let begin = obj[DECOMPOSED_ATTRIBUTES.LINK.BEGIN];
-            let end = obj[DECOMPOSED_ATTRIBUTES.LINK.END];
-            let dateb = begin.split ? begin.split('.') : false;
-            let datee = end.split ? end.split('.') : false;
-            let dateBObj = typeof dateb === 'object' ? {
-                day: parseInt(dateb[0]),
-                month: parseInt(dateb[1]) - 1,
-                year: parseInt(dateb[2])
-            } : false;
-            let dateEObj = typeof datee === 'object' ? {
-                day: parseInt(datee[0]),
-                month: parseInt(datee[1]) - 1,
-                year: parseInt(datee[2])
-            } : false;
-            let dateB = dateb ? new Date(dateBObj.year, dateBObj.month, dateBObj.day) : false;
-            let dateE = datee ? new Date(dateEObj.year, dateEObj.month, dateEObj.day) : false;
-            let result = dateb ? checkIfInInterval(date, dateB, dateE) : true;
-            if (!result && !obj[DECOMPOSED_ATTRIBUTES.LINK.END]) {
-                if (dateB < date) {
-                    result = true;
-                }
-            }
-            if (result) {
-                linkDataArray.push({
-                    from: obj[DECOMPOSED_ATTRIBUTES.NODE2.ID],
-                    to: obj[DECOMPOSED_ATTRIBUTES.NODE1.ID],
-                    category: linkCat,
-                    f069: obj[DECOMPOSED_ATTRIBUTES.LINK.CATEGORY],
-                    meaning: obj[DECOMPOSED_ATTRIBUTES.LINK.TYPE_EXPLANATION],
-                    fromName: obj[DECOMPOSED_ATTRIBUTES.NODE1.NAME] || obj[DECOMPOSED_ATTRIBUTES.NODE1.ID],
-                    toName: obj[DECOMPOSED_ATTRIBUTES.NODE2.NAME] || obj[DECOMPOSED_ATTRIBUTES.NODE2.ID],
-                    T0901: obj[DECOMPOSED_ATTRIBUTES.LINK.SHARE] || false,
-                    tooltip: linkToolTip,
-                    color: obj[DECOMPOSED_ATTRIBUTES.LINK.COLOR]
-                });
-            }
+
+            linkDataArray.push({
+                from: obj[DECOMPOSED_ATTRIBUTES.NODE2.ID],
+                to: obj[DECOMPOSED_ATTRIBUTES.NODE1.ID],
+                category: linkCat,
+                f069: obj[DECOMPOSED_ATTRIBUTES.LINK.CATEGORY],
+                meaning: obj[DECOMPOSED_ATTRIBUTES.LINK.TYPE_EXPLANATION],
+                fromName: obj[DECOMPOSED_ATTRIBUTES.NODE1.NAME] || obj[DECOMPOSED_ATTRIBUTES.NODE1.ID],
+                toName: obj[DECOMPOSED_ATTRIBUTES.NODE2.NAME] || obj[DECOMPOSED_ATTRIBUTES.NODE2.ID],
+                T0901: obj[DECOMPOSED_ATTRIBUTES.LINK.SHARE] || false,
+                tooltip: linkToolTip,
+                color: obj[DECOMPOSED_ATTRIBUTES.LINK.COLOR]
+            });
+
         });
 
         if (usageHistoryCallback) {

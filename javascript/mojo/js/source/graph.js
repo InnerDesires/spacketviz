@@ -62,7 +62,7 @@ class Graph {
         function traverse(Vertex) {
             visited.push(Vertex);
             uniqueIds.forEach(id => {
-                if (nodes[dict[Vertex]][dict[id]] && !visited.includes(id)) {
+                if ((nodes[dict[Vertex]][dict[id]] || nodes[dict[id]][dict[Vertex]]) && !visited.includes(id)) {
                     traverse(id);
                 }
             });
@@ -217,7 +217,7 @@ class Graph {
             return;
         }
         this.uniqueIds.forEach(id => {
-            if (mainEntityRow[this.dict[id]]) {
+            if (mainEntityRow[this.dict[id]] || this.nodes[this.dict[id]][mainEntityIndex]) {
                 resultIDs.push(id);
             }
         });

@@ -21,6 +21,7 @@
             externalLibraries: [{ url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/go.js', forceReload: false },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/searchbox.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/day.js' },
+            { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/custom_parse_format.min.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/day_locale_uk.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/swal.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/images.js' },
@@ -31,7 +32,7 @@
             reuseDOMNode: false,
             supportNEE: true,
             plot: function () {
-
+                dayjs.extend(window.dayjs_plugin_customParseFormat);
                 try {
                     this.addThresholdMenuItem();
                     g_mstr_api = this;

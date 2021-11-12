@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-
+const format = 'MM.DD.YYYY';
 function checkIfInInterval(date, begin, end) {
 
     if (!begin) {
@@ -49,6 +49,7 @@ function entryPoint(me) {
     setStyles(me);
     addStartButton(me);
     dayjs.locale('uk')
+    
     if (!window.reportDate) {
         window.reportDate = new dayjs();
     }
@@ -140,9 +141,7 @@ function entryPoint(me) {
         main(me, { type: 'autoload' });
     }
 }
-function updateReportDate() {
 
-}
 function main(me, options) {
     function showDiagram(visType) {
         let startButton;
@@ -258,7 +257,6 @@ function main(me, options) {
 
 
     window.reportDate = new dayjs(reportDateStr, 'DD.MM.YYYY');
-    alert(window.reportDate.format('DD.MM.YYYY'))
     me.commandsManager.getButton(0).update(`Звітна дата: <input id="reportDate" value="${window.reportDate.format(`DD.MM.YYYY`)}" style="border: 1px solid grey">`)
     // getting data from mstr
     let dataArr = getMstrData();
@@ -283,14 +281,16 @@ function main(me, options) {
         if (!date1) {
             return true;
         }
-        date1 = new dayjs(date1, 'DD.MM.YYYY');
-        if (window.reportDate.isAfter(date1)) {
+        let date = new dayjs(date1, 'DD.MM.YYYY');
+
+       /*  alert(`${window.reportDate.format(format)} ${date1} ${date.format(format)} ${window.reportDate.isAfter(date)}`); */
+        if (window.reportDate.isAfter(date)) {
             if (!date2) {
                 return true;
             }
             date2 = new dayjs(date2, 'DD.MM.YYYY');
             //if object was re-created and begin date is after the deletion date
-            if (date2.isBefore(date1)) {
+            if (date2.isBefore(date)) {
                 return true;
             }
             if (window.reportDate.isBefore(date2)) {
@@ -299,17 +299,11 @@ function main(me, options) {
         }
         return false;
     }
-    alert(parsedData.length);
     parsedData = parsedData.filter((el, index) => {
-        if (index == 15) {
-            
-            alert(new dayjs('28.02.2007', 'DD.MM.YYYY'));
-            alert(new dayjs('12.11.2021', 'DD.MM.YYYY'));
-        }
         return checkIfExists(el[DECOMPOSED_ATTRIBUTES.NODE1.BEGIN], el[DECOMPOSED_ATTRIBUTES.NODE1.END]) &&
             checkIfExists(el[DECOMPOSED_ATTRIBUTES.LINK.BEGIN, DECOMPOSED_ATTRIBUTES.LINK.END]);
     })
-
+    alert(parsedData.length)
     /* if (!checkForObligatoryParams(parsedData[0])) {
         resolveMinParametersCountError();
         return;

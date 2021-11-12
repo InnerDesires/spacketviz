@@ -20,6 +20,8 @@
             errorDetails: 'Для роботи необхідно додати принаймні 1 атрибут та 1 метрику  ',
             externalLibraries: [{ url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/go.js', forceReload: false },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/searchbox.js' },
+            { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/day.js' },
+            { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/day_locale_uk.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/3rdParty/swal.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/images.js' },
             { url: 'file://../plugins/lnkd_prsn/javascript/mojo/js/source/commandsManager.js' },

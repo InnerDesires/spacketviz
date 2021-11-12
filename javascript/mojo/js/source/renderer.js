@@ -106,8 +106,6 @@ function createNodeTooltip(obj, node, category) {
         return `
                     Назва / Ім'я: ${typeof obj[DECOMPOSED_ATTRIBUTES[node].NAME] === 'undefined' ? 'Поле відсутнє' : obj[DECOMPOSED_ATTRIBUTES[node].NAME]}
                     ID: ${typeof obj[DECOMPOSED_ATTRIBUTES[node].ID] === 'undefined' ? 'Поле відсутнє' : obj[DECOMPOSED_ATTRIBUTES[node].ID]}
-                    DATE_B: ${typeof obj[DECOMPOSED_ATTRIBUTES[node].BEGIN] === 'undefined' ? 'Поле відсутнє' : obj[DECOMPOSED_ATTRIBUTES[node].BEGIN]}
-                    DATE_E: ${typeof obj[DECOMPOSED_ATTRIBUTES[node].END] === 'undefined' ? 'Поле відсутнє' : obj[DECOMPOSED_ATTRIBUTES[node].END]}
                     `;
     } catch (e) {
 
@@ -160,8 +158,6 @@ function createLinkTooltipString(obj) {
 
     return `
             Тип зв'язку: ${type}
-            DATE_B: ${begin}
-            DATE_E: ${end}
             Від: ${from}
             До: ${to}
             `;
@@ -281,12 +277,7 @@ class Renderer {
                 tooltip: tooltip
             };
         }
-        let date = window.reportDate;
-        let dateObj = {
-            day: parseInt(('0' + date.getDate()).slice(-2)),
-            month: parseInt(('0' + (date.getMonth())).slice(-2)),
-            year: parseInt(date.getFullYear())
-        }
+
         data.forEach((obj) => {
             if (obj.nodeCategory2 == "7") {
                 obj.name2 = obj.id2

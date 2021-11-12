@@ -54,14 +54,15 @@ function entryPoint(me) {
     PROPS = prepareVisOptions();
     setStyles(me);
     addStartButton(me);
+    dayjs.locale('uk')
     if (!window.reportDate) {
-        window.reportDate = new Date();
+        window.reportDate = new dayjs();
     }
 
 
     let buttons = [
         {
-            innerHTML: `Звітна дата: <input id="reportDate" value="${dateToString(window.reportDate)}" style="border: 1px solid grey">`,
+            innerHTML: `Звітна дата: <input id="reportDate" value="${window.reportDate.format(`DD.MM.YYYY`)}" style="border: 1px solid grey">`,
             onClick: () => {
 
             }
@@ -261,9 +262,10 @@ function main(me, options) {
     // updating reportDate
     let reportDateStr = document.getElementById("reportDate").value;
 
-    let arr = reportDateStr.split('.');
-    window.reportDate = new Date(parseInt(arr[2]), parseInt(arr[1]) - 1, parseInt(arr[0]));
-    me.commandsManager.getButton(0).update(`Звітна дата: <input id="reportDate" value="${dateToString(window.reportDate)}" style="border: 1px solid grey">`)
+   
+    window.reportDate = new dayjs(reportDateStr, 'DD.MM.YYYY');
+
+    me.commandsManager.getButton(0).update(`Звітна дата: <input id="reportDate" value="${window.reportDate.format(`DD.MM.YYYY`)}" style="border: 1px solid grey">`)
     // getting data from mstr
     let dataArr = getMstrData();
 

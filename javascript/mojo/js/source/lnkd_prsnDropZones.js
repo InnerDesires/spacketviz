@@ -53,16 +53,6 @@
                         maxCapacity: 1,
                         title: 'K060_2 Тип пов\'язаних з банком осіб (alias2) + STATUS2',
                         allowObjectType: 1
-                    }, { //7
-                        name: 'Дата початку другої сутності',
-                        maxCapacity: 1,
-                        title: 'P_DATE_B',
-                        allowObjectType: 1
-                    }, { //8
-                        name: 'Дата закінчення другої сутності',
-                        maxCapacity: 1,
-                        title: 'P_DATE_E',
-                        allowObjectType: 1
                     },
                     {
                         name: 'Категорія другої сутності',

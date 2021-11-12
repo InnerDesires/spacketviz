@@ -268,8 +268,6 @@ class Renderer {
                 another: obj[DECOMPOSED_ATTRIBUTES[anotherNode].NAME] || obj[DECOMPOSED_ATTRIBUTES[anotherNode].ID],
                 pairedNodeId: obj[DECOMPOSED_ATTRIBUTES[anotherNode].ID],
                 color: getNodeColor(obj[DECOMPOSED_ATTRIBUTES[node].COLOR]),
-                begin: obj[DECOMPOSED_ATTRIBUTES[node].BEGIN],
-                end: obj[DECOMPOSED_ATTRIBUTES[node].END],
                 category: category,
                 isCollapsed: true,
                 visible: false,

@@ -17,8 +17,6 @@ const DECOMPOSED_ATTRIBUTES = {
         RELATION_EXPLANATION: 'relationExplanataion2',
         COLOR: 'nodeColor2',
         CATEGORY: 'nodeCategory2',
-        BEGIN: 'nodeStartDate2',
-        END: 'nodeEndDate2'
     },
     LINK: {
         TYPE: 'linkType',
@@ -93,16 +91,6 @@ function processData(me, data) {
                 name: 'Назва другої сутності',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.NAME]
-            },//5
-            {
-                name: 'Дата початку другої сутності',
-                expectedType: TYPES.COMPLEX_ATTRIBUTE,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.BEGIN]
-            },//6
-            {
-                name: 'Дата закінчення другої сутності',
-                expectedType: TYPES.COMPLEX_ATTRIBUTE,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.END]
             },//6
             {
                 name: 'Категорія другої сутності',
@@ -174,16 +162,6 @@ function processData(me, data) {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.NAME]
             },//5
-
-            'Дата початку другої сутності': {
-                expectedType: TYPES.COMPLEX_ATTRIBUTE,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.BEGIN]
-            },//6
-            'Дата закінчення другої сутності': {
-                expectedType: TYPES.COMPLEX_ATTRIBUTE,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.END]
-            },//6
-
             'Категорія другої сутності': {
                 expectedType: TYPES.METRIC,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]

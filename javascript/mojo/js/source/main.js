@@ -1,11 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-function dateToString(date) {
-    dateStr = ('0' + date.getDate()).slice(-2) + '.'
-        + ('0' + (date.getMonth() + 1)).slice(-2) + '.'
-        + date.getFullYear();
-    return dateStr;
-}
 
 function checkIfInInterval(date, begin, end) {
 
@@ -262,9 +256,9 @@ function main(me, options) {
     // updating reportDate
     let reportDateStr = document.getElementById("reportDate").value;
 
-   
-    window.reportDate = new dayjs(reportDateStr, 'DD.MM.YYYY');
 
+    window.reportDate = new dayjs(reportDateStr, 'DD.MM.YYYY');
+    alert(window.reportDate.format('DD.MM.YYYY'))
     me.commandsManager.getButton(0).update(`Звітна дата: <input id="reportDate" value="${window.reportDate.format(`DD.MM.YYYY`)}" style="border: 1px solid grey">`)
     // getting data from mstr
     let dataArr = getMstrData();
@@ -281,7 +275,40 @@ function main(me, options) {
             });
         return;
     }
+
+    //filtering data according to the reportDate
     let parsedData = processData(me, dataArr);
+
+    function checkIfExists(date1, date2) {
+        if (!date1) {
+            return true;
+        }
+        date1 = new dayjs(date1, 'DD.MM.YYYY');
+        if (window.reportDate.isAfter(date1)) {
+            if (!date2) {
+                return true;
+            }
+            date2 = new dayjs(date2, 'DD.MM.YYYY');
+            //if object was re-created and begin date is after the deletion date
+            if (date2.isBefore(date1)) {
+                return true;
+            }
+            if (window.reportDate.isBefore(date2)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    alert(parsedData.length);
+    parsedData = parsedData.filter((el, index) => {
+        if (index == 15) {
+            
+            alert(new dayjs('28.02.2007', 'DD.MM.YYYY'));
+            alert(new dayjs('12.11.2021', 'DD.MM.YYYY'));
+        }
+        return checkIfExists(el[DECOMPOSED_ATTRIBUTES.NODE1.BEGIN], el[DECOMPOSED_ATTRIBUTES.NODE1.END]) &&
+            checkIfExists(el[DECOMPOSED_ATTRIBUTES.LINK.BEGIN, DECOMPOSED_ATTRIBUTES.LINK.END]);
+    })
 
     /* if (!checkForObligatoryParams(parsedData[0])) {
         resolveMinParametersCountError();

@@ -83,7 +83,7 @@
                         name: 'PARENT_TYPE',
                         maxCapacity: 1,
                         title: 'PARENT_TYPE',
-                        allowObjectType: 2
+                        allowObjectType: 1
                     }
                 ];
             },

@@ -65,7 +65,8 @@ const LINK_CATEGORIES = {
  * @return {NODE_CATEGORIES} Node Category
  */
 function getNodeCategory(nodeCategoryCode) {
-    if (nodeCategoryCode === "7") return NODE_CATEGORIES.LSF;
+    if (nodeCategoryCode === "a010") return NODE_CATEGORIES.LSF;
+    if (nodeCategoryCode === "idps") return NODE_CATEGORIES.LS;
     switch (nodeCategoryCode) {
         case (1):
             return NODE_CATEGORIES.BANK;
@@ -253,18 +254,12 @@ class Renderer {
                 throw new Error('@renderer.constructor.createNodeObject: Error, recieved wrong node string');
             }
             let anotherNode = (node === 'NODE1') ? 'NODE2' : 'NODE1';
-            let nameToUse = '';
-            if (obj[DECOMPOSED_ATTRIBUTES[node].CATEGORY] == '7') {
-                obj[DECOMPOSED_ATTRIBUTES[node].NAME] = obj[DECOMPOSED_ATTRIBUTES[node].ID];
-                nameToUse = obj[DECOMPOSED_ATTRIBUTES[node].NAME]
-            } else {
-                nameToUse = obj[DECOMPOSED_ATTRIBUTES[node].ID] + "\n" + obj[DECOMPOSED_ATTRIBUTES[node].NAME]
-            }
+
             let category = getNodeCategory(obj[DECOMPOSED_ATTRIBUTES[node].CATEGORY]);
             let tooltip = createNodeTooltip(obj, node, category);
             return {
                 key: obj[DECOMPOSED_ATTRIBUTES[node].ID],
-                name: nameToUse,
+                name: obj[DECOMPOSED_ATTRIBUTES[node].NAME],
                 another: obj[DECOMPOSED_ATTRIBUTES[anotherNode].NAME] || obj[DECOMPOSED_ATTRIBUTES[anotherNode].ID],
                 pairedNodeId: obj[DECOMPOSED_ATTRIBUTES[anotherNode].ID],
                 color: getNodeColor(obj[DECOMPOSED_ATTRIBUTES[node].COLOR]),
@@ -275,7 +270,13 @@ class Renderer {
                 tooltip: tooltip
             };
         }
-
+        let badLinks = {};
+        if (options.badLinks) {
+            alert(options.badLinks.length)
+            options.badLinks.forEach(el => {
+                badLinks[`${el.from}${el.to}`] = true;
+            })
+        }
         data.forEach((obj) => {
             if (obj.nodeCategory2 == "7") {
                 obj.name2 = obj.id2
@@ -342,20 +343,16 @@ class Renderer {
             // if node wasn't found in preceding rows - adding it to the Node Data Array
             if (!K0201Found) {
                 addNode('NODE1');
-            } else {
-
             }
             if (!K0202Found) {
                 addNode('NODE2');
-            } else {
-
             }
-            let linkCat = this.getLinkCategory(obj[DECOMPOSED_ATTRIBUTES.LINK.CATEGORY]);
+            let linkCat = badLinks[`${obj[DECOMPOSED_ATTRIBUTES.NODE1.ID]}${obj[DECOMPOSED_ATTRIBUTES.NODE2.ID]}`] ? 'common_contacts' : this.getLinkCategory(obj[DECOMPOSED_ATTRIBUTES.LINK.CATEGORY]);
             let linkToolTip = createLinkTooltipString(obj);
 
             linkDataArray.push({
-                from: obj[DECOMPOSED_ATTRIBUTES.NODE2.ID],
-                to: obj[DECOMPOSED_ATTRIBUTES.NODE1.ID],
+                from: obj[DECOMPOSED_ATTRIBUTES.NODE1.ID],
+                to: obj[DECOMPOSED_ATTRIBUTES.NODE2.ID],
                 category: linkCat,
                 f069: obj[DECOMPOSED_ATTRIBUTES.LINK.CATEGORY],
                 meaning: obj[DECOMPOSED_ATTRIBUTES.LINK.TYPE_EXPLANATION],

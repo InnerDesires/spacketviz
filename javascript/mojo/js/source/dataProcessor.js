@@ -120,7 +120,7 @@ function processData(me, data) {
             },//11
             {
                 name: 'PARENT_TYPE',
-                expectedType: TYPES.METRIC,
+                expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]
             }//12
         ],
@@ -188,7 +188,7 @@ function processData(me, data) {
             },//11
 
             'PARENT_TYPE': {
-                expectedType: TYPES.MERTIC,
+                expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]
             }//12
         }

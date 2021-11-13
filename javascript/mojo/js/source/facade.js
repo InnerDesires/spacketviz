@@ -63,7 +63,8 @@ class Facade {
     showAll() {
         this.deleteDiagram();
         delete this.renderer;
-        this.renderer = new Renderer(this.data, this.HTMLElementId, null, null, { mode: 'all', lookupIds: [] });
+        let badLinks = this.Graph.transitiveReduction();
+        this.renderer = new Renderer(this.data, this.HTMLElementId, null, null, { mode: 'all', lookupIds: [], badLinks: badLinks });
     }
 
     showAllNodesFrom(mainEntityId) {

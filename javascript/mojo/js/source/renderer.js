@@ -259,7 +259,7 @@ class Renderer {
             let tooltip = createNodeTooltip(obj, node, category);
             return {
                 key: obj[DECOMPOSED_ATTRIBUTES[node].ID],
-                name: obj[DECOMPOSED_ATTRIBUTES[node].NAME],
+                name: obj[DECOMPOSED_ATTRIBUTES[node].ID] + '\n' + obj[DECOMPOSED_ATTRIBUTES[node].NAME],
                 another: obj[DECOMPOSED_ATTRIBUTES[anotherNode].NAME] || obj[DECOMPOSED_ATTRIBUTES[anotherNode].ID],
                 pairedNodeId: obj[DECOMPOSED_ATTRIBUTES[anotherNode].ID],
                 color: getNodeColor(obj[DECOMPOSED_ATTRIBUTES[node].COLOR]),

@@ -108,9 +108,9 @@ class Facade {
         nodesToShow.forEach(element => {
             nodesToShowDict[element] = true;
         });
+        let badLinks = this.Graph.transitiveReduction();
 
-
-        this.renderer = new Renderer(this.currentData, this.HTMLElementId, mainEntityId, nodesToShowDict, { lookupIds: [mainEntityId] }, usageHistoryCallback);
+        this.renderer = new Renderer(this.currentData, this.HTMLElementId, mainEntityId, nodesToShowDict, { lookupIds: [mainEntityId], badLinks: badLinks}, usageHistoryCallback);
 
     }
 

@@ -299,10 +299,10 @@ function main(me, options) {
         }
         return false;
     }
-    parsedData = parsedData.filter((el, index) => {
+    /* parsedData = parsedData.filter((el, index) => {
         return checkIfExists(el[DECOMPOSED_ATTRIBUTES.NODE1.BEGIN], el[DECOMPOSED_ATTRIBUTES.NODE1.END]) &&
             checkIfExists(el[DECOMPOSED_ATTRIBUTES.LINK.BEGIN, DECOMPOSED_ATTRIBUTES.LINK.END]);
-    })
+    }) */
     alert(parsedData.length)
     /* if (!checkForObligatoryParams(parsedData[0])) {
         resolveMinParametersCountError();

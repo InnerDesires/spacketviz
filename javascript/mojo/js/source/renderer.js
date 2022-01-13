@@ -272,7 +272,7 @@ class Renderer {
         }
         let badLinks = {};
         if (options.badLinks) {
-            alert(options.badLinks.length)
+            alert(`Кількість зв'язків до перевірки: ${options.badLinks.length}`)
             options.badLinks.forEach(el => {
                 badLinks[`${el.from}${el.to}`] = true;
             })

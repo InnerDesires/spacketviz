@@ -303,7 +303,6 @@ function main(me, options) {
         return checkIfExists(el[DECOMPOSED_ATTRIBUTES.NODE1.BEGIN], el[DECOMPOSED_ATTRIBUTES.NODE1.END]) &&
             checkIfExists(el[DECOMPOSED_ATTRIBUTES.LINK.BEGIN, DECOMPOSED_ATTRIBUTES.LINK.END]);
     }) */
-    alert(parsedData.length)
     /* if (!checkForObligatoryParams(parsedData[0])) {
         resolveMinParametersCountError();
         return;

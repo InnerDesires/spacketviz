@@ -672,7 +672,7 @@ class Renderer {
             }, new go.Binding('visible'),
                 _(go.Panel, 'Vertical', { background: 'rgba(255,255,255,0.5)' },
                     _(go.Picture, {
-                        source: 'lnkd_prsn_vis_icons/bank_violet.png',
+                        source: 'lnkd_pckts_vis_icons/bank_violet.png',
                         desiredSize: new go.Size(100, 100)
                     }, new go.Binding('source', 'color', (color) => {
                         if (!color) {
@@ -701,7 +701,7 @@ class Renderer {
             }, new go.Binding('visible'),
                 // the whole node panel
                 _(go.Picture, {
-                    source: 'lnkd_prsn_vis_icons/human.png',
+                    source: 'lnkd_pckts_vis_icons/human.png',
                     desiredSize: new go.Size(100, 100)
                 }, new go.Binding('source', 'color', (color) => {
                     if (!color) {
@@ -734,7 +734,7 @@ class Renderer {
             }, new go.Binding('visible'),
                 // the whole node panel
                 _(go.Picture, {
-                    source: 'lnkd_prsn_vis_icons/human.png',
+                    source: 'lnkd_pckts_vis_icons/human.png',
                     desiredSize: new go.Size(100, 100)
                 }, new go.Binding('source', 'color', (color) => {
                     if (!color) {
@@ -1193,7 +1193,7 @@ class Renderer {
         if (linkCategoryCode === 6)
             return LINK_CATEGORIES.COMMON_CONTACTS;
         // "" stands for no styling
-        return '';
+        return LINK_CATEGORIES.FOUNDER;
     }
 
 

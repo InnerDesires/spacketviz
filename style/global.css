@@ -1,9 +1,9 @@
-.custom-vis-layout.lnkd_prsn .autocomplete {
+.custom-vis-layout.lnkd_pckts .autocomplete {
   position: relative;
   display: inline-block;
 }
 
-.custom-vis-layout.lnkd_prsn .autocomplete-items {
+.custom-vis-layout.lnkd_pckts .autocomplete-items {
   position: absolute;
   border-right: 1px solid rgb(212, 212, 212);
   border-left: 1px solid rgb(212, 212, 212);
@@ -16,14 +16,14 @@
   right: 0px;
 }
 
-.custom-vis-layout.lnkd_prsn .autocomplete-items div {
+.custom-vis-layout.lnkd_pckts .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
   background-color: rgb(255, 255, 255);
   border-bottom: 1px solid rgb(212, 212, 212);
 }
 
-.custom-vis-layout.lnkd_prsn .autocomplete-items div:hover {
+.custom-vis-layout.lnkd_pckts .autocomplete-items div:hover {
   background-color: rgb(233, 233, 233);
 }
 

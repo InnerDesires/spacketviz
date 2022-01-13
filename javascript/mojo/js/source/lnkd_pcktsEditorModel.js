@@ -1,6 +1,6 @@
 (function () {
-    if (!mstrmojo.plugins.lnkd_prsn) {
-        mstrmojo.plugins.lnkd_prsn = {};
+    if (!mstrmojo.plugins.lnkd_pckts) {
+        mstrmojo.plugins.lnkd_pckts = {};
     }
 
     mstrmojo.requiresCls(
@@ -8,12 +8,12 @@
         "mstrmojo.array"
     );
 
-    mstrmojo.plugins.lnkd_prsn.lnkd_prsnEditorModel = mstrmojo.declare(
+    mstrmojo.plugins.lnkd_pckts.lnkd_pcktsEditorModel = mstrmojo.declare(
         mstrmojo.vi.models.editors.CustomVisEditorModel,
         null,
         {
-            scriptClass: "mstrmojo.plugins.lnkd_prsn.lnkd_prsnEditorModel",
-            cssClass: "lnkd_prsneditormodel",
+            scriptClass: "mstrmojo.plugins.lnkd_pckts.lnkd_pcktsEditorModel",
+            cssClass: "lnkd_pcktseditormodel",
             getCustomProperty: function getCustomProperty() {
                 var $WT = mstrmojo.vi.models.editors.CustomVisEditorModel.WIDGET_TYPE;
                 let props = [
@@ -42,4 +42,4 @@
             }
         })
 }());
-//@ sourceURL=lnkd_prsnEditorModel.js
+//@ sourceURL=lnkd_pcktsEditorModel.js

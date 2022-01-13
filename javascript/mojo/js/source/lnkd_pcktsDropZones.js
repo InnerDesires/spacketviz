@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 (function () {
-    if (!mstrmojo.plugins.lnkd_prsn) {
-        mstrmojo.plugins.lnkd_prsn = {};
+    if (!mstrmojo.plugins.lnkd_pckts) {
+        mstrmojo.plugins.lnkd_pckts = {};
     }
 
     mstrmojo.requiresCls(
@@ -10,12 +10,12 @@
         'mstrmojo.array'
     );
 
-    mstrmojo.plugins.lnkd_prsn.lnkd_prsnDropZones = mstrmojo.declare(
+    mstrmojo.plugins.lnkd_pckts.lnkd_pcktsDropZones = mstrmojo.declare(
         mstrmojo.vi.models.CustomVisDropZones,
         null,
         {
-            scriptClass: 'mstrmojo.plugins.lnkd_prsn.lnkd_prsnDropZones',
-            cssClass: 'lnkd_prsndropzones',
+            scriptClass: 'mstrmojo.plugins.lnkd_pckts.lnkd_pcktsDropZones',
+            cssClass: 'lnkd_pcktsdropzones',
             getCustomDropZones: function getCustomDropZones() {
                 return [
                     { //0
@@ -80,9 +80,9 @@
                         title: 'F069_LinkCategory',
                         allowObjectType: 2
                     }, {
-                        name: 'PARENT_TYPE',
+                        name: 'CHLD TYPE',
                         maxCapacity: 1,
-                        title: 'PARENT_TYPE',
+                        title: 'CHLD TYPE',
                         allowObjectType: 1
                     }
                 ];
@@ -153,4 +153,4 @@
             }
         });
 }());
-//@ sourceURL=lnkd_prsnDropZones.js
+//@ sourceURL=lnkd_pcktsDropZones.js

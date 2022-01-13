@@ -103,26 +103,15 @@ function processData(me, data) {
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.BEGIN]
             },//8
             {
-                name: 'Частка прямої участі',
-                expectedType: TYPES.METRIC,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.SHARE]
-            },//9
-            {
                 name: 'Дата закінчення',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.END]
-            },//10
+            },//9
             {
-                name: 'Категорія зв\'язку',
-                expectedType: TYPES.METRIC,
-                parseThreshold: DECOMPOSED_ATTRIBUTES.LINK.COLOR,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.CATEGORY]
-            },//11
-            {
-                name: 'PARENT_TYPE',
+                name: 'CHLD TYPE',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]
-            }//12
+            }//10
         ],
         byNameDynamic: {
             /* 
@@ -172,25 +161,15 @@ function processData(me, data) {
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.BEGIN]
             },//8
 
-            'Частка прямої участі': {
-                expectedType: TYPES.METRIC,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.SHARE]
-            },//9
-
             'Дата закінчення': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.END]
-            },//10
+            },//9
 
-            'Категорія зв\'язку': {
-                expectedType: TYPES.METRIC,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.CATEGORY]
-            },//11
-
-            'PARENT_TYPE': {
+            'CHLD TYPE': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]
-            }//12
+            }//10
         }
     };
     function clone(obj) {

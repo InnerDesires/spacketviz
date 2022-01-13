@@ -58,52 +58,47 @@ function processData(me, data) {
                 TODO: Check the position == priority of the "trasitionTo" array elements 
             */
             {
-                name: 'Код першої сутності',
+                name: 'IDPS',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.ID],
             }, //0
             {
-                name: 'Назва першої сутності',
+                name: 'IDPS NAME',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.NAME]
             },//1
             {
-                name: 'Дата початку першої сутності',
+                name: 'DATE B',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.BEGIN]
             }, // 2
             {
-                name: 'Дата закінчення першої сутності',
+                name: 'DATE E',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.END]
             },//3
             {
-                name: 'Категорія першої сутності',
+                name: 'Счет колонки',
                 expectedType: TYPES.METRIC,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.CATEGORY]
             },//4
             {
-                name: 'Код другої сутності',
+                name: 'CHLD',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.ID]
             },//4
             {
-                name: 'Назва другої сутності',
+                name: 'CHLD NAME',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.NAME]
-            },//6
+            },
             {
-                name: 'Категорія другої сутності',
-                expectedType: TYPES.METRIC,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]
-            },//7
-            {
-                name: 'Дата початку',
+                name: 'DATE BR',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.BEGIN]
             },//8
             {
-                name: 'Дата закінчення',
+                name: 'DATE ER',
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.END]
             },//9
@@ -117,51 +112,47 @@ function processData(me, data) {
             /* 
                 TODO: Check the prosition == priority of the "trasitionTo" array elements 
             */
-            'Код першої сутності': {
+            'IDPS': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.ID],
             }, //0
 
-            'Назва першої сутності': {
+            'IDPS NAME': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.NAME]
             },//1
 
-            'Дата початку першої сутності': {
+            'DATE B': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.BEGIN]
             },//2
 
-            'Дата закінчення першої сутності': {
+            'DATE E': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.END]
             },//2
 
-            'Категорія першої сутності': {
+            'Счет колонки': {
                 expectedType: TYPES.METRIC,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE1.CATEGORY]
+                transitionTo: ['dummy']
             },//3
 
-            'Код другої сутності': {
+            'CHLD': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.ID]
             },//4
 
-            'Назва другої сутності': {
+            'CHLD NAME': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.NAME]
             },//5
-            'Категорія другої сутності': {
-                expectedType: TYPES.METRIC,
-                transitionTo: [DECOMPOSED_ATTRIBUTES.NODE2.CATEGORY]
-            },//7
 
-            'Дата початку': {
+            'DATE BR': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.BEGIN]
             },//8
 
-            'Дата закінчення': {
+            'DATE ER': {
                 expectedType: TYPES.COMPLEX_ATTRIBUTE,
                 transitionTo: [DECOMPOSED_ATTRIBUTES.LINK.END]
             },//9

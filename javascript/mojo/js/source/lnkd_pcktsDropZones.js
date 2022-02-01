@@ -19,22 +19,22 @@
             getCustomDropZones: function getCustomDropZones() {
                 return [
                     { //0
-                        name: 'IDPS',
+                        name: 'Код першої сутності',
                         maxCapacity: 1,
-                        title: 'TRELP16_K021 Код Особи 1 + SHORTNAME1',
+                        title: 'IDPS',
                         allowObjectType: 1
                     }, { //1
-                        name: 'IDPS NAME',
+                        name: 'Назва першої сутності',
                         maxCapacity: 1,
-                        title: 'K060_1 Тип пов\'язаних з банком осіб (alias1) + STATUS1',
+                        title: 'IDPS NAME',
                         allowObjectType: 1
                     }, { //2
-                        name: 'DATE B',
+                        name: 'Дата початку першої сутності',
                         maxCapacity: 1,
                         title: 'DATE_B',
                         allowObjectType: 1
                     }, { //3
-                        name: 'DATE E',
+                        name: 'Дата закінчення першої сутності',
                         maxCapacity: 1,
                         title: 'DATE_E',
                         allowObjectType: 1
@@ -44,27 +44,27 @@
                         title: 'K021_1_NodeCategory',
                         allowObjectType: 2
                     }, { //5
-                        name: 'CHLD',
+                        name: 'Код другої сутності',
                         maxCapacity: 1,
-                        title: 'TRELP16_K021 Код Особи 2 + SHORTNAME1',
+                        title: 'CHLD',
                         allowObjectType: 1
                     }, { //6
-                        name: 'CHLD NAME',
+                        name: 'Назва другої сутності',
                         maxCapacity: 1,
-                        title: 'K060_2 Тип пов\'язаних з банком осіб (alias2) + STATUS2',
+                        title: 'CHLD NAME',
                         allowObjectType: 1
                     }, {
-                        name: 'DATE BR',
+                        name: 'Дата початку другої сутності',
                         maxCapacity: 1,
                         title: 'F_DATE_B',
                         allowObjectType: 1
                     }, {
-                        name: 'DATE ER',
+                        name: 'Дата закінчення другої сутності',
                         maxCapacity: 1,
                         title: 'F_DATE_E',
                         allowObjectType: 1
                     }, {
-                        name: 'CHLD TYPE',
+                        name: 'Тип другої сутності',
                         maxCapacity: 1,
                         title: 'CHLD TYPE',
                         allowObjectType: 1

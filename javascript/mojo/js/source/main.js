@@ -43,6 +43,10 @@ function entryPoint(me) {
         {
             str: 'maxPathesCount',
             default: 12
+        }, 
+        {
+            str: 'showBadLinks',
+            default: "true"
         }
     ];
     PROPS = prepareVisOptions();
@@ -236,7 +240,7 @@ function main(me, options) {
         let obligatoryParams = [DECOMPOSED_ATTRIBUTES.NODE1.ID, DECOMPOSED_ATTRIBUTES.NODE2.ID, DECOMPOSED_ATTRIBUTES.NODE1.NAME, DECOMPOSED_ATTRIBUTES.NODE2.NAME];
         for (let i = 0; i < obligatoryParams.length; i++) {
             if (undef(obj[obligatoryParams[i]])) {
-                alert(obj['id1']);
+                
                 return false;
             }
         }
@@ -299,15 +303,7 @@ function main(me, options) {
         }
         return false;
     }
-    /* parsedData = parsedData.filter((el, index) => {
-        return checkIfExists(el[DECOMPOSED_ATTRIBUTES.NODE1.BEGIN], el[DECOMPOSED_ATTRIBUTES.NODE1.END]) &&
-            checkIfExists(el[DECOMPOSED_ATTRIBUTES.LINK.BEGIN, DECOMPOSED_ATTRIBUTES.LINK.END]);
-    }) */
-    /* if (!checkForObligatoryParams(parsedData[0])) {
-        resolveMinParametersCountError();
-        return;
-    } */
-
+    
     if (typeof window.facade !== 'object') {
         window.facade = new Facade(parsedData, me.domNode.id, PROPS, me);
     } else if (window.facade && window.facade.updateData) {

@@ -63,8 +63,12 @@ class Facade {
     showAll() {
         this.deleteDiagram();
         delete this.renderer;
+        let options = { lookupIds: [], mode: 'all' };
+        if (this.props['showBadLinks'] === 'true') {
+            options.badLinks = this.Graph.transitiveReduction();
+        }
         let badLinks = this.Graph.transitiveReduction();
-        this.renderer = new Renderer(this.data, this.HTMLElementId, null, null, { mode: 'all', lookupIds: [], badLinks: badLinks });
+        this.renderer = new Renderer(this.data, this.HTMLElementId, null, null, options);
     }
 
     showAllNodesFrom(mainEntityId) {
@@ -81,8 +85,6 @@ class Facade {
     }
 
     showFrom(mainEntityId, usageHistoryCallback) {
-
-
         if (typeof mainEntityId !== 'string') return;
         this.deleteDiagram();
         delete this.renderer;
@@ -108,9 +110,13 @@ class Facade {
         nodesToShow.forEach(element => {
             nodesToShowDict[element] = true;
         });
-        let badLinks = this.Graph.transitiveReduction();
 
-        this.renderer = new Renderer(this.currentData, this.HTMLElementId, mainEntityId, nodesToShowDict, { lookupIds: [mainEntityId], badLinks: badLinks}, usageHistoryCallback);
+        let options = { lookupIds: [mainEntityId] }
+        if (this.props['showBadLinks'] === 'true') {
+            options.badLinks = this.Graph.transitiveReduction();
+        }
+
+        this.renderer = new Renderer(this.currentData, this.HTMLElementId, mainEntityId, nodesToShowDict, options, usageHistoryCallback);
 
     }
 
@@ -156,14 +162,6 @@ class Facade {
             console.error(`[removeDuplicateLinks] Passed data array is ${data ? 'empty' : 'undefined'}`);
             return [];
         }
-
-        /* 
-            ! Several links between two nodes aren't allowed, direction doesn't matter, 
-            ! (a -> b  considered to be same as a <- b)
-            ! After finding duplicate links, the one with higher priority stays
-            ! Priority is defined by F069 parameter's value. Lesser value means higher priority
-        */
-
 
         // saving visited links in a dictionary
         let currentState = {};

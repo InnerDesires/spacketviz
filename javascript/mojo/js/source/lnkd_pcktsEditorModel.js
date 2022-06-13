@@ -32,7 +32,12 @@
                                         propertyName: "maxPathesCount",
                                         min: 1,
                                         max: 1000
+                                    }, {
+                                        style: $WT.CHECKBOXANDLABEL,
+                                        propertyName: "showBadLinks",
+                                        labelText: "Виявляти зайві зв'язки"
                                     }
+
                                 ]
                             }
                         ]

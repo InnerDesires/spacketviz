@@ -82,7 +82,7 @@ class Graph {
         while (stack.length != 0) {
             start = stack.pop();
 
-            let currentRow = nodes[start]
+            let currentRow = nodes[start];
             let directLinks = [];
             for (let i = 0; i < currentRow.length; i++) {
                 if (currentRow[i]) {
@@ -97,7 +97,7 @@ class Graph {
                     return true;
                 }
                 if (!visited[directLinks[i]]) {
-                    stack.push(directLinks[i])
+                    stack.push(directLinks[i]);
                     visited[directLinks[i]] = true;
                 }
             }
@@ -226,20 +226,20 @@ class Graph {
 
     transitiveReduction() {
         let linksToDelete = [];
-        let nodesCopy = clone(this.nodes)
+        let nodesCopy = clone(this.nodes);
         for (let i = 0; i < this.uniqueIds.length; i++) {
             let adjNodes = [];
             this.nodes[i].forEach((el, index) => {
                 if (el && index !== i) {
                     adjNodes.push(index);
                 }
-            })
+            });
             adjNodes.forEach(adjNode => {
                 if (this.isReachableWithoutDirectLinks(i, adjNode, nodesCopy)) {
                     nodesCopy[i][adjNode] = false;
-                    linksToDelete.push({ from: this.uniqueIds[i], to: this.uniqueIds[adjNode] })
+                    linksToDelete.push({ from: this.uniqueIds[i], to: this.uniqueIds[adjNode] });
                 }
-            })
+            });
         }
 
         return linksToDelete;
